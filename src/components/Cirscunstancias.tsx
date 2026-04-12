@@ -40,9 +40,13 @@ export const Circunstancias = () => {
                     </div>
                 </label>
 
-                <label className='bg-[#1E2C4B] text-white border-2 rounded-[10px] h-18.75 w-130 flex items-center'>
-                    <input type="checkbox" className='mt-2'/>
-                    <div className='flex flex-col'>
+
+
+                <label className='cursor-pointer'>
+                    <input type="checkbox" className='peer hidden'/>
+                    <div className='flex gap-4 items-center pl-3 border-2 rounded-[10px] py-3 w-130
+                                    bg-[#1E2C4B] text-white
+                                    peer-checked:bg-[#D3DBEC] peer-checked:text-[#1E2C4B] peer-checked:border-[#D3DBEC] transition-colors duration-200'>
                         <h4 className=' poppins' style={{fontWeight:700}}> Conduta Social </h4>
                         <h5 className='poppins' style={{fontWeight:300}}> Relacionamento no meio familiar, trabalho e comunidade. </h5>
                     </div>
