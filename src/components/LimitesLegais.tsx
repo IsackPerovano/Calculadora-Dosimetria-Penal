@@ -1,9 +1,13 @@
 import Icon from '../assets/martelo.svg';
 
-export const Limites = () => {
+type Props = {
+    isActive : boolean
+}
+
+export const Limites = ({isActive} : Props) => {
     return(
 
-        <div className=" h-50 w-250 ml-50 mt-5 border-2 border-[#d9d9d8] rounded-[15px] pl-3.5 bg-white">
+        <div  className=" h-50 w-250 ml-50 mt-5 border-2 border-[#d9d9d8] rounded-[15px] pl-3.5 bg-white">
 
             <h3 
                 className="flex pt-3 gap-3 text-[24px] poppins" style={{fontWeight: 500}} >

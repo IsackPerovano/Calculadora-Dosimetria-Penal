@@ -1,6 +1,10 @@
 import Icon from '../assets/justica.svg'
 
-export const Circunstancias = () => {
+type Props = {
+    isActive : boolean
+}
+
+export const Circunstancias = ({isActive} : Props) => {
     return(
         <div className="h-115 w-250 border-2 rounded-[15px] pl-3.5 border-[#d9d9d8] bg-white ml-50 mt-5">
 
