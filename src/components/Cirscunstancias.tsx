@@ -1,12 +1,9 @@
 import Icon from '../assets/justica.svg'
 
-type Props = {
-    isActive : boolean
-}
 
-export const Circunstancias = ({isActive} : Props) => {
+export const Circunstancias = () => {
     return(
-        <div className="h-115 w-250 border-2 rounded-[15px] pl-3.5 border-[#d9d9d8] bg-white ml-50 mt-5">
+        <div className="h-115 w-250 border-2 pl-3.5 pr-3.5 rounded-[15px] border-[#d9d9d8] bg-white ml-50 mt-5">
 
             <h3 
                className="flex pt-3 gap-3 text-[24px] poppins" style={{fontWeight: 500}} >

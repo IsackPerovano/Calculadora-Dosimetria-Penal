@@ -1,34 +1,66 @@
 import { Circunstancias } from "./components/Cirscunstancias";
 import { Fases } from "./components/Fases";
 import { Limites } from "./components/LimitesLegais";
-import './App.css'
 import { useState } from "react";
+import { AgraAten } from "./components/AgraAten";
+import { AumDim } from "./components/AumDim";
+import './App.css'
 
 
 const App = () =>{
 
-  const [Ativo, setActivo] = useState(0);
+  const [Ativo, setActivo] = useState<number>(0);
+  const handsome = (aoClicar : number) =>{   
+     setActivo(aoClicar)
+  }
 
 
+  let conteudo;
+  switch(Ativo) {
+    
+    case 1:
+      conteudo = (
+      <>
+        <Limites/>
+        <Circunstancias/>
+      </>
+      );
+      break;
+    
+    case 2:
+      conteudo = (
+        <AgraAten/>
+      )
+      break;
+    
+    case 3:
+      conteudo = (
+        <AumDim/>
+      ) 
+      break;
+
+    default:
+      conteudo = (
+           <>
+        <Limites/>
+        <Circunstancias/>
+      </>
+      )
+  }
+  
 
   return(
     <div className="bg-[#F5F5F5] h-screen ">
 
       <div className="h-25 w-auto bg-amber-400" />
 
-      <Fases />
-      
-      <div>
-        
+      <Fases aoClicar={handsome} />
 
-        <Limites isActive={Ativo === 0}/>
-        <Circunstancias isActive={Ativo === 0} />
-        
-      </div>
+      {conteudo}  
 
-    
 
     </div>
+    
   )
 } 
 
