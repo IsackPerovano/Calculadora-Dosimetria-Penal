@@ -4,64 +4,51 @@ import { Limites } from "./components/LimitesLegais";
 import { useState } from "react";
 import { AgraAten } from "./components/AgraAten";
 import { AumDim } from "./components/AumDim";
-import './App.css'
+import "./App.css";
 
-
-const App = () =>{
-
+const App = () => {
   const [Ativo, setActivo] = useState<number>(0);
-  const handsome = (aoClicar : number) =>{   
-     setActivo(aoClicar)
-  }
-
+  const handsome = (aoClicar: number) => {
+    setActivo(aoClicar);
+  };
 
   let conteudo;
-  switch(Ativo) {
-    
+  switch (Ativo) {
     case 1:
       conteudo = (
-      <>
-        <Limites/>
-        <Circunstancias/>
-      </>
+        <>
+          <Limites />
+          <Circunstancias />
+        </>
       );
       break;
-    
+
     case 2:
-      conteudo = (
-        <AgraAten/>
-      )
+      conteudo = <AgraAten />;
       break;
-    
+
     case 3:
-      conteudo = (
-        <AumDim/>
-      ) 
+      conteudo = <AumDim />;
       break;
 
     default:
       conteudo = (
-           <>
-        <Limites/>
-        <Circunstancias/>
-      </>
-      )
+        <>
+          <Limites />
+          <Circunstancias />
+        </>
+      );
   }
-  
 
-  return(
+  return (
     <div className="bg-[#F5F5F5] h-screen ">
-
       <div className="h-25 w-auto bg-amber-400" />
 
-      <Fases aoClicar={handsome} />
+      <Fases aoClicar={handsome} fase={Ativo}/>
 
-      {conteudo}  
-
-
+      {conteudo}
     </div>
-    
-  )
-} 
+  );
+};
 
 export default App;

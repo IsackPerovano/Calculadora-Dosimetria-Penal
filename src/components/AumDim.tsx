@@ -1,75 +1,50 @@
-import Icon from '../assets/martelo.svg';
-
+import Icon from "../assets/martelo.svg";
 
 export const AumDim = () => {
-    return(
+  return (
+    <div className=" h-60 w-250 ml-50 pl-3.5 pr-3.5 mt-5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
+      <h3
+        className="flex pt-3 gap-3 text-[24px] poppins"
+        style={{ fontWeight: 500 }}
+      >
+        <img src={Icon} />
+        Casos de Aumento e Diminuição
+      </h3>
 
-        <div   className=" h-50 w-250 ml-50 mt-5 border-2 border-[#d9d9d8] rounded-[15px] pl-3.5 bg-white">
+      <h4 className="pt-1 poppins poppins" style={{ fontWeight: 300 }}>
+        Majorantes e Minorantes (Frações).
+      </h4>
 
-            <h3 
-                className="flex pt-3 gap-3 text-[24px] poppins" style={{fontWeight: 500}} >
-                <img src={Icon} />    
-                Causas de Aumento e Diminuição
-            </h3>
+      <div className="flex  pt-4">
+        <div>
+          <h3 className=" text-[18px] poppins " style={{ fontWeight: 700 }}>
+            Aumento
+          </h3>
 
+          <input className="border border-blue-800" type="number" />
             
-            <h4
-                className="pt-1 poppins poppins" style={{fontWeight: 300}}>
-                Majorantes e Minorantes (Frações).
-            </h4>
-
-            <div className="flex gap-1 pt-4">    
-                <div>    
-                    <h3 
-                        className=" text-[18px] poppins " style={{fontWeight: 700}}>
-                        Causas de Aumento
-                    </h3>
-
-                    <div className="flex pr-18.5 pt-1" >
-                        <div className="flex flex-col pr-18.5  items-center poppins" style={{fontWeight: 300}}> 
-                        <input className="Border w-25  border rounded-[10px] text-center" type="number" />
-                        <h5>Anos</h5>
-                        </div>
-
-                        <div className="flex flex-col pr-18.5 items-center poppins" style={{fontWeight: 300}}>
-                        <input className="Border w-25 border rounded-[10px] text-center" type="number" />
-                            <h5>Meses</h5>
-                        </div>
-
-                        <div className="flex flex-col items-center poppins" style={{fontWeight: 300}}>
-                        <input className="Border w-25 border rounded-[10px] text-center" type="number" />
-                            <h5>Dias</h5>
-                        </div>
-                    </div>
-                </div>    
-
-
-                <div className="pr-3.5">
-                    <h3 
-                        className=" text-[18px] poppins" style={{fontWeight: 700}}>
-                        Causas de Diminuição
-                    </h3>
-
-                    <div className="flex pt-1" >
-                        <div className="flex flex-col pr-18.5 items-center poppins" style={{fontWeight: 300}}>
-                        <input className="Border w-25 border rounded-[10px] text-center" type="number" />
-                            <h5>Anos</h5>
-                        </div>
-
-                        <div className="flex flex-col pr-18.5 items-center poppins" style={{fontWeight: 300}}>
-                        <input className="Border w-25 border rounded-[10px] text-center" type="number" />
-                            <h5>Meses</h5>
-                        </div>
-
-                        <div className="flex flex-col items-center poppins" style={{fontWeight: 300}}>
-                        <input className="Border w-25 border rounded-[10px] text-center" type="number" />
-                            <h5>Dias</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-    )
-}
+        <div>
+          <h3 className=" text-[18px] poppins" style={{ fontWeight: 700 }}>
+            Diminuição
+          </h3>
+
+          <div className="flex">
+            <div>
+              <div className="border rounded-[10px] w-[205px] h-[30px] flex items-center justify-center text-[20px]">
+                <button> - </button>
+              </div>
+            </div>
+
+            <div className="pl-10">
+              <div className="border rounded-[10px] w-[205px] h-[30px] flex items-center justify-center text-[20px]">
+                <button> + </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
