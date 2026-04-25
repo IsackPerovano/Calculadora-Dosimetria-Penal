@@ -41,8 +41,8 @@ const App = () => {
   }
 
   return (
-    <div className="bg-[#F5F5F5] h-screen ">
-      <div className="h-25 w-auto bg-amber-400" />
+    <div className="bg-[#F5F5F5] min-h-screen ">
+      <div className="h-10 w-auto bg-amber-400" />
 
       <Fases aoClicar={handsome} fase={Ativo}/>
 

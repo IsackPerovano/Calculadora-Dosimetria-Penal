@@ -1,161 +1,423 @@
+import { useState } from "react";
 import Icon from "../assets/justica.svg";
+import type { Valores } from "../Types/Valores";
 
 export const Circunstancias = () => {
+  const [valores, SetValore] = useState<Valores>({
+    culpabilidade: null,
+    antecedentes: null,
+    condutaSocial: null,
+    personalidade: null,
+    motivos: null,
+    circunstancias: null,
+    consequencias: null,
+    vitima: null,
+  });
+
+  const handleClick = (campo: keyof Valores, opcao: string) => {
+    SetValore((prev) => ({
+      ...prev,
+      [campo]: prev[campo] === opcao ? null : opcao,
+    }));
+  };
+
   return (
-    <div className="h-117 w-250 border-2 px-3.5 py-3.5 rounded-[15px] border-[#d9d9d8] bg-white ml-50 mt-5">
+    <div className="w-[850px] border-2 px-3.5 py-3.5 rounded-[15px] border-[#d9d9d8] bg-white ml-50 mt-1">
       <h3
-        className="flex gap-3 text-[24px] poppins"
+        className="flex gap-3 text-[20px] poppins"
         style={{ fontWeight: 500 }}
       >
         <img src={Icon} className="w-8 h-8" />
         Circunstâncias Judiciais (Art. 59 CP)
       </h3>
 
-      <h4 className="pt-1 poppins  poppins" style={{ fontWeight: 300 }}>
+      <h4
+        className="pt-1 poppins text-[14px] poppins"
+        style={{ fontWeight: 300 }}
+      >
         Selecione as circunstâncias que devem ser valoradas.
       </h4>
 
       <div className="flex pt-2 items-center">
-        <h5 className="pr-1 poppins" style={{ fontWeight: 400 }}>
+        <h5 className="pr-1 poppins text-[12px]" style={{ fontWeight: 400 }}>
           Valor de cada Circunstancia:
         </h5>
         <input
-          className="Border border-2 rounded-[10px] w-16.25 border-[#d9d9d8] text-center"
+          className="Border border-2 text-[14px] rounded-[10px] w-16.25 border-[#d9d9d8] text-center"
           type="number"
         />
-        <h5 className="text-[20px] pl-1 pr-1"> / </h5>
+        <h5 className="text-[14px] pl-1 pr-1"> / </h5>
         <input
-          className="Border border-2 rounded-[10px] w-16.25 border-[#d9d9d8] text-center"
+          className="Border border-2 text-[14px] rounded-[10px] w-16.25 border-[#d9d9d8] text-center"
           type="number"
         />
       </div>
 
       <div className="pt-5 grid grid-cols-2 gap-2">
-        <label className="cursor-pointer">
-          <input type="checkbox" className="peer hidden" />
-          <div
-            className="flex  items-center pl-3  rounded-[10px] h-17.5 w-120
-                                    bg-[#1E2C4B] text-white
-                                    peer-checked:bg-[#3993DD] transition-colors duration-200"
+        <div className="border border-[#d9d9d8] rounded-[10px] p-2 flex flex-col justify-between min-h-[140px]">
+          <h2
+            className="poppins text-[14px] poppins"
+            style={{ fontWeight: 700 }}
           >
-            <div className="flex flex-col">
-              <h4 className="poppins font-bold">Culpabilidade</h4>
-              <h5 className="poppins font-light">
-                Grau de reprovabilidade da conduta.
-              </h5>
-            </div>
-          </div>
-        </label>
+            Culpabilidade
+          </h2>
+          <h1
+            className="poppins text-[12px] poppins"
+            style={{ fontWeight: 300 }}
+          >
+            Dolo intenso, premeditação / Culpa mínima, menor reprovabilidade
+          </h1>
+          <div className="flex gap-10 pt-1">
+            <label className="flex-auto cursor-pointer">
+              <input
+                type="radio"
+                name="Culpabilidade"
+                className="hidden peer"
+              />
 
-        <label className="cursor-pointer">
-          <input type="checkbox" className="peer hidden" />
-          <div
-            className="flex  items-center pl-3 rounded-[10px] h-17.5 w-120
-                                    bg-[#1E2C4B] text-white
-                                    peer-checked:bg-[#3993DD] transition-colors duration-200"
-          >
-            <div className="flex flex-col">
-              <h4 className="poppins font-bold">Antecedentes</h4>
-              <h5 className="poppins font-light">
-                Vida pregressa do agente (condenações anteriores).
-              </h5>
-            </div>
-          </div>
-        </label>
+              <div
+                onClick={() => handleClick("culpabilidade", "+")}
+                className={`... ${valores.culpabilidade === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center `}
+              >
+                +
+              </div>
+            </label>
 
-        <label className="cursor-pointer pt-1">
-          <input type="checkbox" className="peer hidden" />
-          <div
-            className="flex gap-4 items-center pl-3  rounded-[10px] h-17.5 w-120
-                                    bg-[#1E2C4B] text-white
-                                    peer-checked:bg-[#3993DD] transition-colors duration-200"
-          >
-            <div className="flex flex-col">
-              <h4 className="poppins font-bold">Conduta Social</h4>
-              <h5 className="poppins font-light">
-                Relacionamento no meio familiar, trabalho e comunidade.
-              </h5>
-            </div>
-          </div>
-        </label>
+            <label className="flex-auto cursor-pointer">
+              <input
+                type="radio"
+                name="Culpabilidade"
+                className="hidden peer"
+              />
 
-        <label className="cursor-pointer pt-1">
-          <input type="checkbox" className="peer hidden" />
-          <div
-            className="flex  items-center pl-3  rounded-[10px] h-17.5 w-120
-                                    bg-[#1E2C4B] text-white
-                                    peer-checked:bg-[#3993DD] transition-colors duration-200"
-          >
-            <div className="flex flex-col">
-              <h4 className="poppins font-bold">Personalidade</h4>
-              <h5 className="poppins font-light">
-                Índole e caráter do agente.
-              </h5>
-            </div>
+              <div
+                onClick={() => handleClick("culpabilidade", "-")}
+                className={`... ${valores.culpabilidade === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center `}
+              >
+                -
+              </div>
+            </label>
           </div>
-        </label>
+        </div>
 
-        <label className="cursor-pointer pt-1">
-          <input type="checkbox" className="peer hidden" />
-          <div
-            className="flex  items-center pl-3  rounded-[10px] h-17.5 w-120
-                                    bg-[#1E2C4B] text-white
-                                    peer-checked:bg-[#3993DD] transition-colors duration-200"
+        <div className="border border-[#d9d9d8] rounded-[10px] p-2 flex flex-col justify-between min-h-[140px]">
+          <h2
+            className="poppins text-[14px] poppins"
+            style={{ fontWeight: 700 }}
           >
-            <div className="flex flex-col">
-              <h4 className="poppins font-bold">Motivos</h4>
-              <h5 className="poppins font-light">
-                Razões que levaram à prática do crime.
-              </h5>
-            </div>
-          </div>
-        </label>
+            Antecedentes
+          </h2>
+          <h1 className="poppins text-[12px]" style={{ fontWeight: 300 }}>
+            Condenações transitadas em julgado / Primariedade, ausência de
+            registros
+          </h1>
+          <h1 className="poppins text-[10px]" style={{ fontWeight: 500 }}>
+            {" "}
+            (Súmula 444 STJ: inquéritos e ações em curso não podem agravar)
+          </h1>
 
-        <label className="cursor-pointer pt-1">
-          <input type="checkbox" className="peer hidden" />
-          <div
-            className="flex  items-center pl-3  rounded-[10px] h-17.5 w-120
-                                    bg-[#1E2C4B] text-white
-                                    peer-checked:bg-[#3993DD] transition-colors duration-200"
-          >
-            <div className="flex flex-col">
-              <h4 className="poppins font-bold">Circunstâncias</h4>
-              <h5 className="poppins font-light">
-                Lugar, tempo e modo de execução.
-              </h5>
-            </div>
-          </div>
-        </label>
+          <div className="flex gap-10 pt-1">
+            <label className="flex-auto cursor-pointer">
+              <input type="radio" name="Antecedentes" className="hidden peer" />
 
-        <label className="cursor-pointer pt-1">
-          <input type="checkbox" className="peer hidden" />
-          <div
-            className="flex  items-center pl-3  rounded-[10px] h-17.5 w-120
-                                    bg-[#1E2C4B] text-white
-                                    peer-checked:bg-[#3993DD] transition-colors duration-200"
-          >
-            <div className="flex flex-col">
-              <h4 className="poppins font-bold">Consequências</h4>
-              <h5 className="poppins font-light">Danos causados pelo crime.</h5>
-            </div>
-          </div>
-        </label>
+              <div
+                onClick={() => handleClick("antecedentes", "+")}
+                className={`... ${valores.antecedentes === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center `}
+              >
+                +
+              </div>
+            </label>
 
-        <label className="cursor-pointer pt-1">
-          <input type="checkbox" className="peer hidden" />
-          <div
-            className="flex items-center pl-3  rounded-[10px] h-17.5 w-120
-                                    bg-[#1E2C4B] text-white
-                                    peer-checked:bg-[#3993DD] transition-colors duration-200"
-          >
-            <div className="flex flex-col">
-              <h4 className="poppins font-bold">Comportamento da Vítima</h4>
-              <h5 className="poppins font-light">
-                Se a vítima contribuiu para o crime.
-              </h5>
-            </div>
+            <label className="flex-auto cursor-pointer">
+              <input type="radio" name="Antecedentes" className="hidden peer" />
+
+              <div
+                onClick={() => handleClick("antecedentes", "-")}
+                className={`... ${valores.antecedentes === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center `}
+              >
+                -
+              </div>
+            </label>
           </div>
-        </label>
+        </div>
+
+        <div className="border border-[#d9d9d8] rounded-[10px] p-2 flex flex-col justify-between min-h-[140px]">
+          <h2
+            className="poppins text-[14px] poppins"
+            style={{ fontWeight: 700 }}
+          >
+            Conduta social
+          </h2>
+          <h1
+            className="poppins text-[12px] poppins"
+            style={{ fontWeight: 300 }}
+          >
+            Histórico de violência familiar, desemprego voluntário, má
+            vizinhança / Bom comportamento no trabalho, família e comunidade
+          </h1>
+          <div className="flex gap-10 pt-1">
+            <label className="flex-auto cursor-pointer">
+              <input type="radio" name="Conduta" className="hidden peer" />
+
+              <div
+                onClick={() => handleClick("condutaSocial", "+")}
+                className={`... ${valores.condutaSocial === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center `}
+              >
+                +
+              </div>
+            </label>
+
+            <label className="flex-auto cursor-pointer">
+              <input type="radio" name="Conduta" className="hidden peer" />
+
+              <div
+                onClick={() => handleClick("condutaSocial", "-")}
+                className={`... ${valores.condutaSocial === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center `}
+              >
+                -
+              </div>
+            </label>
+          </div>
+        </div>
+        <div className="border border-[#d9d9d8] rounded-[10px] p-2 flex flex-col justify-between min-h-[140px]">
+          {" "}
+          <h2
+            className="poppins text-[14px] poppins"
+            style={{ fontWeight: 700 }}
+          >
+            Personalidade
+          </h2>
+          <h1
+            className="poppins text-[12px] poppins"
+            style={{ fontWeight: 300 }}
+          >
+            Predisposição à agressividade / Personalidade equilibrada, sem
+            traços antissociais
+          </h1>
+          <h1
+            className="poppins text-[10px] poppins"
+            style={{ fontWeight: 500 }}
+          >
+            (Má personalidade exige laudo de psicólogo ou psiquiatra)
+          </h1>
+          <div className="flex gap-10 pt-1">
+            <label className="flex-auto cursor-pointer">
+              <input
+                type="radio"
+                name="Personalidade"
+                className="hidden peer"
+              />
+
+              <div
+                onClick={() => handleClick("personalidade", "+")}
+                className={`${valores.personalidade === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center `}
+              >
+                +
+              </div>
+            </label>
+
+            <label className="flex-auto cursor-pointer">
+              <input
+                type="radio"
+                name="Personalidade"
+                className="hidden peer"
+              />
+
+              <div
+                onClick={() => handleClick("personalidade", "-")}
+                className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center ${valores.personalidade === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+              >
+                -
+              </div>
+            </label>
+          </div>
+        </div>
+        <div className="border border-[#d9d9d8] rounded-[10px] p-2 flex flex-col justify-between min-h-[140px]">
+          {" "}
+          <h2
+            className="poppins text-[14px] poppins"
+            style={{ fontWeight: 700 }}
+          >
+            Motivos do crime
+          </h2>
+          <h1
+            className="poppins text-[12px] poppins"
+            style={{ fontWeight: 300 }}
+          >
+            Cobiça, torpeza, motivo antissocial / Honra, relevante valor social
+            ou moral
+          </h1>
+          <h1
+            className="poppins text-[10px] poppins"
+            style={{ fontWeight: 500 }}
+          >
+            (Se já é qualificadora/agravante: ne bis in idem)
+          </h1>
+          <div className="flex gap-10 pt-1">
+            <label className="flex-auto cursor-pointer">
+              <input type="radio" name="Motivos" className="hidden peer" />
+
+              <div
+                onClick={() => handleClick("motivos", "+")}
+                className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center ${valores.motivos === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+              >
+                +
+              </div>
+            </label>
+
+            <label className="flex-auto cursor-pointer">
+              <input type="radio" name="Motivos" className="hidden peer" />
+
+              <div
+                onClick={() => handleClick("motivos", "-")}
+                className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center ${valores.motivos === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+              >
+                -
+              </div>
+            </label>
+          </div>
+        </div>
+        <div className="border border-[#d9d9d8] rounded-[10px] p-2 flex flex-col justify-between min-h-[140px]">
+          {" "}
+          <h2
+            className="poppins text-[14px] poppins"
+            style={{ fontWeight: 700 }}
+          >
+            Circunstâncias do crime
+          </h2>
+          <h1
+            className="poppins text-[12px] poppins"
+            style={{ fontWeight: 300 }}
+          >
+            Local vulnerável, modo cruel além do tipo, horário de madrugada /
+            Circunstâncias que reduziram o potencial ofensivo do fato
+          </h1>
+          <h1
+            className="poppins text-[10px] poppins"
+            style={{ fontWeight: 500 }}
+          >
+            (Se já é qualificadora/agravante: ne bis in idem)
+          </h1>
+          <div className="flex gap-10 pt-1">
+            <label className="flex-auto cursor-pointer">
+              <input
+                type="radio"
+                name="Circunstancias"
+                className="hidden peer"
+              />
+
+              <div
+                onClick={() => handleClick("circunstancias", "+")}
+                className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center ${valores.circunstancias === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+              >
+                +
+              </div>
+            </label>
+
+            <label className="flex-auto cursor-pointer">
+              <input
+                type="radio"
+                name="Circunstancias"
+                className="hidden peer"
+              />
+
+              <div
+                onClick={() => handleClick("circunstancias", "-")}
+                className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center ${valores.circunstancias === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+              >
+                -
+              </div>
+            </label>
+          </div>
+        </div>
+        <div className="border border-[#d9d9d8] rounded-[10px] p-2 flex flex-col justify-between min-h-[140px]">
+          {" "}
+          <h2
+            className="poppins text-[14px] poppins"
+            style={{ fontWeight: 700 }}
+          >
+            Consequências do crime{" "}
+          </h2>
+          <h1
+            className="poppins text-[12px] poppins"
+            style={{ fontWeight: 300 }}
+          >
+            Dano irreversível, trauma intenso à vítima ou à sociedade /
+            Consequências mínimas, dano reversível
+          </h1>
+          <h1
+            className="poppins text-[10px] poppins"
+            style={{ fontWeight: 500 }}
+          >
+            (Se já é qualificadora/agravante: ne bis in idem)
+          </h1>
+          <div className="flex gap-10 pt-1">
+            <label className="flex-auto cursor-pointer">
+              <input type="radio" name="sinal" className="hidden peer" />
+
+              <div
+                onClick={() => handleClick("consequencias", "+")}
+                className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center ${valores.consequencias === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+              >
+                +
+              </div>
+            </label>
+
+            <label className="flex-auto cursor-pointer">
+              <input type="radio" name="sinal" className="hidden peer" />
+
+              <div
+                onClick={() => handleClick("consequencias", "-")}
+                className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
+    w-40 h-6 flex items-center justify-center ${valores.consequencias === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+              >
+                -
+              </div>
+            </label>
+          </div>
+        </div>
+        <div className="border border-[#d9d9d8] rounded-[10px] p-2 flex flex-col justify-between min-h-[140px]">
+          {" "}
+          <h2
+            className="poppins text-[14px] poppins"
+            style={{ fontWeight: 700 }}
+          >
+            Comportamento da Vítima{" "}
+          </h2>
+          <h1
+            className="poppins text-[12px] poppins"
+            style={{ fontWeight: 300 }}
+          >
+            Vítima provocou, contribuiu ou deu causa ao crime
+          </h1>
+          <h1
+            className="poppins text-[10px] poppins"
+            style={{ fontWeight: 500 }}
+          >
+            (Só pode beneficiar o réu — nunca agravar a pena)
+          </h1>
+          <div className="flex items-center justify-center pt-1">
+            <label className="flex-auto cursor-pointer ">
+              <input type="checkbox" className="hidden peer" />
+              <div className="poppins text-[14px] rounded-[5px] border border-[#d9d9d8]  h-6 flex items-center justify-center transition-colors duration-200 peer-checked:bg-[#1E2C4B] peer-checked:text-white">
+                -
+              </div>
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   );
