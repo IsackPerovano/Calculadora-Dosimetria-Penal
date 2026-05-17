@@ -22,7 +22,7 @@ export const Circunstancias = () => {
   };
 
   return (
-    <div className="w-[850px] border-2 px-3.5 py-3.5 rounded-[15px] border-[#d9d9d8] bg-white ml-50 mt-1">
+    <div className="w-212.5 border-2 px-3.5 py-3.5 rounded-[15px] border-[#d9d9d8] bg-white ml-50 mt-1">
       <h3
         className="flex gap-3 text-[20px] poppins"
         style={{ fontWeight: 500 }}
