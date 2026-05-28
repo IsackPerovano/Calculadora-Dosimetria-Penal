@@ -43,12 +43,12 @@ export const AgraAten = () => {
         </h5>
         <input
           className="Border border-2 rounded-[10px] w-16.25 border-[#d9d9d8] text-[14px] text-center"
-          type="number"
+          type="number" min="0"
         />
         <h5 className="text-[14px] pl-1 pr-1"> / </h5>
         <input
           className="Border border-2 rounded-[10px] w-16.25 text-[14px] border-[#d9d9d8] text-center"
-          type="number"
+          type="number" min="0"
         />
       </div>
 

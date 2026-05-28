@@ -98,7 +98,7 @@ export const AumDim = () => {
                 </h5>
                 <input
                   className="Border border-2 rounded-[10px] w-16.25 border-[#d9d9d8] text-[14px] text-center"
-                  type="number"
+                  type="number" min="0"
                   value={form.numerador}
                   onChange={(e) =>
                     atualizarFormulario(
@@ -111,7 +111,7 @@ export const AumDim = () => {
                 <h5 className="text-[14px] pl-1 pr-1"> / </h5>
                 <input
                   className="Border border-2 rounded-[10px] w-16.25 text-[14px] border-[#d9d9d8] text-center"
-                  value={form.denominador}
+                  value={form.denominador} min="0"
                   onChange={(e) =>
                     atualizarFormulario(
                       index,
@@ -131,6 +131,8 @@ export const AumDim = () => {
                 }
               ></textarea>
 
+              <div className="flex flex-col gap-4">
+
               <button
                 onClick={Add}
                 className="bg-[#1f293A] text-white h-6.25 w-12.5 rounded-[10px] text-[12px] poppins"
@@ -147,6 +149,7 @@ export const AumDim = () => {
                 {" "}
                 X
               </button>
+              </div>
             </div>
           </div>
         </div>
