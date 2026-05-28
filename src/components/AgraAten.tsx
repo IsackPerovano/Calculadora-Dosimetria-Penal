@@ -23,6 +23,11 @@ export const AgraAten = () => {
     }
   };
 
+  const [fracao, setFracao] = useState({
+    numerador: 1,
+    denominador: 6,
+  });
+
   return (
     <div className=" h-52 w-[850px] ml-50 px-3.5 py-3.5 mt-5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
       <h3
@@ -33,7 +38,10 @@ export const AgraAten = () => {
         Agravantes e Atenuantes
       </h3>
 
-      <h4 className="pt-1 text-[14px] poppins poppins" style={{ fontWeight: 300 }}>
+      <h4
+        className="pt-1 text-[14px] poppins poppins"
+        style={{ fontWeight: 300 }}
+      >
         Arts. 61 a 66 do Código Penal.
       </h4>
 
@@ -43,17 +51,33 @@ export const AgraAten = () => {
         </h5>
         <input
           className="Border border-2 rounded-[10px] w-16.25 border-[#d9d9d8] text-[14px] text-center"
-          type="number" min="0"
+          type="number"
+          min="0"
+          value={fracao.numerador}
+          onChange={(e) =>
+            setFracao({
+              ...fracao,
+              numerador: e.target.value === "" ? 0 : Number(e.target.value),
+            })
+          }
         />
         <h5 className="text-[14px] pl-1 pr-1"> / </h5>
         <input
           className="Border border-2 rounded-[10px] w-16.25 text-[14px] border-[#d9d9d8] text-center"
-          type="number" min="0"
+          type="number"
+          min="0"
+           value={fracao.denominador}
+          onChange={(e) =>
+            setFracao({
+              ...fracao,
+              denominador: e.target.value === "" ? 0 : Number(e.target.value),
+            })
+          }
         />
       </div>
 
       <div className="flex  pt-4 place-content-between">
-        <div >
+        <div>
           <div className="flex place-content-between">
             <h3 className=" text-[14px] poppins " style={{ fontWeight: 700 }}>
               Agravantes
@@ -65,7 +89,7 @@ export const AgraAten = () => {
           </div>
 
           <div className="flex  gap-5">
-            <div >
+            <div>
               <div onClick={AGMenos}>
                 <button className="rounded-[10px] border border-[#d9d9d8] hover:bg-[#1E2C4B]  hover:text-white transition duration-200 w-40  h-7.5 flex items-center justify-center ">
                   {" "}

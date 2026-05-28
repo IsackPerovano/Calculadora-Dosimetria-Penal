@@ -14,6 +14,11 @@ export const Circunstancias = () => {
     vitima: null,
   });
 
+    const [fracao, setFracao] = useState({
+    numerador: 1,
+    denominador: 8,
+  });
+
   const handleClick = (campo: keyof Valores, opcao: string) => {
     SetValore((prev) => ({
       ...prev,
@@ -45,11 +50,27 @@ export const Circunstancias = () => {
         <input
           className="Border border-2 text-[14px] rounded-[10px] w-16.25 border-[#d9d9d8] text-center"
           type="number"
+          min="0"
+           value={fracao.numerador}
+          onChange={(e) =>
+            setFracao({
+              ...fracao,
+              numerador: e.target.value === "" ? 0 : Number(e.target.value),
+            })
+          }
         />
         <h5 className="text-[14px] pl-1 pr-1"> / </h5>
         <input
           className="Border border-2 text-[14px] rounded-[10px] w-16.25 border-[#d9d9d8] text-center"
           type="number"
+           min="0"
+           value={fracao.denominador}
+          onChange={(e) =>
+            setFracao({
+              ...fracao,
+              denominador: e.target.value === "" ? 0 : Number(e.target.value),
+            })
+          }
         />
       </div>
 

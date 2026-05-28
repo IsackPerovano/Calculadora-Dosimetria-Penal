@@ -8,7 +8,7 @@ import "./App.css";
 
 const App = () => {
   const [Ativo, setActivo] = useState<number>(0);
-  const handsome = (aoClicar: number) => {
+  const handclick = (aoClicar: number) => {
     setActivo(aoClicar);
   };
 
@@ -44,7 +44,7 @@ const App = () => {
     <div className="bg-[#F5F5F5] min- h-screen max-h-screen[100%]">
       <div className="h-10 w-auto bg-amber-400" />
 
-      <Fases aoClicar={handsome} fase={Ativo}/>
+      <Fases aoClicar={handclick} fase={Ativo}/>
 
       {conteudo}
     </div>
