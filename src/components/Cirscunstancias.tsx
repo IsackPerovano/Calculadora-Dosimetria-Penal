@@ -1,26 +1,18 @@
-import { useState } from "react";
 import Icon from "../assets/justica.svg";
 import type { Valores } from "../Types/Valores";
 
-export const Circunstancias = () => {
-  const [valores, SetValore] = useState<Valores>({
-    culpabilidade: null,
-    antecedentes: null,
-    condutaSocial: null,
-    personalidade: null,
-    motivos: null,
-    circunstancias: null,
-    consequencias: null,
-    vitima: null,
-  });
+type Props = {
+  valores: Valores;
+  SetValores: React.Dispatch<React.SetStateAction<Valores>>;
+  fracao: { numerador: number; denominador: number };
+  setFracao: React.Dispatch<React.SetStateAction<{ numerador: number; denominador: number }>>;
+};
 
-    const [fracao, setFracao] = useState({
-    numerador: 1,
-    denominador: 8,
-  });
+export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props) => {
+ 
 
   const handleClick = (campo: keyof Valores, opcao: string) => {
-    SetValore((prev) => ({
+    SetValores((prev) => ({
       ...prev,
       [campo]: prev[campo] === opcao ? null : opcao,
     }));

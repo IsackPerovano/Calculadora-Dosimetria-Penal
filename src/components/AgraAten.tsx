@@ -1,7 +1,18 @@
 import { useState } from "react";
 import Icon from "../assets/calculadora.svg";
 
-export const AgraAten = () => {
+type Props = {
+  ag: number;
+  setAg: React.Dispatch<React.SetStateAction<number>>;
+  at: number;
+  setAt: React.Dispatch<React.SetStateAction<number>>;
+  fracaoAGAT: { numerador: number; denominador: number };
+  setFracaoAGAT: React.Dispatch<
+    React.SetStateAction<{ numerador: number; denominador: number }>
+  >;
+};
+
+export const AgraAten = ({}: Props) => {
   const [ag, setAg] = useState(0);
   const AGMais = () => {
     if (ag < 45) {
@@ -13,6 +24,7 @@ export const AgraAten = () => {
       setAg(ag - 1);
     }
   };
+
   const [at, setAt] = useState(0);
   const ATMais = () => {
     setAt(at + 1);
@@ -23,13 +35,13 @@ export const AgraAten = () => {
     }
   };
 
-  const [fracao, setFracao] = useState({
+  const [fracaoAGAT, setFracaoAGAT] = useState({
     numerador: 1,
     denominador: 6,
   });
 
   return (
-    <div className=" h-52 w-[850px] ml-50 px-3.5 py-3.5 mt-5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
+    <div className="w-[850px] ml-50 px-3.5 py-3.5 mt-5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
       <h3
         className="flex gap-3 text-[20px] poppins"
         style={{ fontWeight: 500 }}
@@ -53,10 +65,10 @@ export const AgraAten = () => {
           className="Border border-2 rounded-[10px] w-16.25 border-[#d9d9d8] text-[14px] text-center"
           type="number"
           min="0"
-          value={fracao.numerador}
+          value={fracaoAGAT.numerador}
           onChange={(e) =>
-            setFracao({
-              ...fracao,
+            setFracaoAGAT({
+              ...fracaoAGAT,
               numerador: e.target.value === "" ? 0 : Number(e.target.value),
             })
           }
@@ -66,10 +78,10 @@ export const AgraAten = () => {
           className="Border border-2 rounded-[10px] w-16.25 text-[14px] border-[#d9d9d8] text-center"
           type="number"
           min="0"
-           value={fracao.denominador}
+          value={fracaoAGAT.denominador}
           onChange={(e) =>
-            setFracao({
-              ...fracao,
+            setFracaoAGAT({
+              ...fracaoAGAT,
               denominador: e.target.value === "" ? 0 : Number(e.target.value),
             })
           }

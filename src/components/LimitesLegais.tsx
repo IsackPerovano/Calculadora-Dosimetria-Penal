@@ -1,18 +1,15 @@
-import { useState } from "react";
 import Icon from "../assets/martelo.svg";
 import type { LimitesLeg } from "../Types/LimitesLeg";
 
-export const Limites = () => {
-  const [tipo, setTipo] = useState<string>("minima");
+type Props = {
+  tipo : string;
+  setTipo : React.Dispatch<React.SetStateAction<string>>;
+  tempo : LimitesLeg;
+  setTempo: React.Dispatch<React.SetStateAction<LimitesLeg>>;
+}
 
-  const [tempo, setTempo] = useState<LimitesLeg>({
-    MinAnos: 0,
-    MinMes: 0,
-    MinDias: 0,
-    MaxAnos: 0,
-    MaxMes: 0,
-    MaxDias: 0,
-  });
+export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
+ 
   return (
     <div className="w-[850px] ml-50 mt-1 px-3.5 py-3.5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
       {/* TITULOS */}

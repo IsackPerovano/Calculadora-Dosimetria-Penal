@@ -1,9 +1,12 @@
-import { useState } from "react";
 import Icon from "../assets/doc.svg";
 import type { Form } from "../Types/Form";
 
-export const AumDim = () => {
-  const [conjunto, setConjunto] = useState<Form[]>([]);
+type Props = {
+  conjunto: Form[]; 
+  setConjunto: React.Dispatch<React.SetStateAction<Form[]>>;
+}
+
+export const AumDim = ({conjunto, setConjunto} : Props) => {
 
   const atualizarFormulario = (
     indexDaLinha: number,
