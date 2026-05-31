@@ -81,7 +81,6 @@ const App = () => {
       );
   }
 
-  // const penaCalcular = calcuparPena (tipo, tempo, valores, ag, conjunto);
 
   return (
     <div className="bg-[#F5F5F5] min- h-screen max-h-screen[100%]">
