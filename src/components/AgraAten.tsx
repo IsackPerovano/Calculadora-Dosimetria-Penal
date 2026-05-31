@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Icon from "../assets/calculadora.svg";
 
 type Props = {
@@ -12,8 +11,14 @@ type Props = {
   >;
 };
 
-export const AgraAten = ({}: Props) => {
-  const [ag, setAg] = useState(0);
+export const AgraAten = ({
+  ag,
+  setAg,
+  at,
+  setAt,
+  fracaoAGAT,
+  setFracaoAGAT,
+}: Props) => {
   const AGMais = () => {
     if (ag < 45) {
       setAg(ag + 1);
@@ -25,7 +30,6 @@ export const AgraAten = ({}: Props) => {
     }
   };
 
-  const [at, setAt] = useState(0);
   const ATMais = () => {
     setAt(at + 1);
   };
@@ -35,13 +39,8 @@ export const AgraAten = ({}: Props) => {
     }
   };
 
-  const [fracaoAGAT, setFracaoAGAT] = useState({
-    numerador: 1,
-    denominador: 6,
-  });
-
   return (
-    <div className="w-[850px] ml-50 px-3.5 py-3.5 mt-2 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
+    <div className="w-[850px]  px-3.5 py-3.5 mt-2 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
       <h3
         className="flex gap-3 text-[20px] poppins"
         style={{ fontWeight: 500 }}

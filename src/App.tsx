@@ -13,7 +13,7 @@ import type { Form } from "./Types/Form";
 import "./App.css";
 
 const App = () => {
-  const [Ativo, setActivo] = useState<number>(0);
+  const [Ativo, setActivo] = useState<number>(1);
   const handclick = (aoClicar: number) => {
     setActivo(aoClicar);
   };
@@ -136,6 +136,10 @@ const App = () => {
             penaB={ResultadoCalculado.penaBase}
             penaP={ResultadoCalculado.penaProvisoria}
             penaD={ResultadoCalculado.penaDefinitiva}
+            VI={ResultadoCalculado.VI}
+            V1={ResultadoCalculado.V1}
+            V2={ResultadoCalculado.V2}
+            V3={ResultadoCalculado.V3}
            />
         </div>
       </div>

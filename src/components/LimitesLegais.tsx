@@ -11,7 +11,7 @@ type Props = {
 export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
  
   return (
-    <div className="w-[850px] ml-50 mt-2 px-3.5 py-3.5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
+    <div className="w-[850px]  mt-2 px-3.5 py-3.5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
       {/* TITULOS */}
       <h3
         className="flex gap-3 text-[20px] poppins"

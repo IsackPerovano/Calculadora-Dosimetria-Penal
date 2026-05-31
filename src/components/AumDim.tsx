@@ -2,12 +2,11 @@ import Icon from "../assets/doc.svg";
 import type { Form } from "../Types/Form";
 
 type Props = {
-  conjunto: Form[]; 
+  conjunto: Form[];
   setConjunto: React.Dispatch<React.SetStateAction<Form[]>>;
-}
+};
 
-export const AumDim = ({conjunto, setConjunto} : Props) => {
-
+export const AumDim = ({ conjunto, setConjunto }: Props) => {
   const atualizarFormulario = (
     indexDaLinha: number,
     campo: string,
@@ -41,16 +40,19 @@ export const AumDim = ({conjunto, setConjunto} : Props) => {
   };
 
   const formularioPreenchido = (form: Form) => {
-    return form.numerador >= 0 && form.denominador >= 0 && form.obs.trim() !== "";
+    return (
+      form.numerador >= 0 && form.denominador >= 0 && form.obs.trim() !== ""
+    );
   };
 
   const podeAdicionar =
-    conjunto.length === 0 || formularioPreenchido(conjunto[conjunto.length - 1]);
+    conjunto.length === 0 ||
+    formularioPreenchido(conjunto[conjunto.length - 1]);
   const alturaContainer = 60 + conjunto.length + 30;
 
   return (
     <div
-      className="w-212.5 ml-50 px-3.5 py-3.5 mt-2 border-2 border-[#d9d9d8] rounded-[15px] bg-white"
+      className="w-212.5  px-3.5 py-3.5 mt-2 border-2 border-[#d9d9d8] rounded-[15px] bg-white"
       style={{ height: `${alturaContainer}` }}
     >
       <h3
@@ -101,7 +103,8 @@ export const AumDim = ({conjunto, setConjunto} : Props) => {
                 </h5>
                 <input
                   className="Border border-2 rounded-[10px] w-16.25 border-[#d9d9d8] text-[14px] text-center"
-                  type="number" min="0"
+                  type="number"
+                  min="0"
                   value={form.numerador}
                   onChange={(e) =>
                     atualizarFormulario(
@@ -114,7 +117,8 @@ export const AumDim = ({conjunto, setConjunto} : Props) => {
                 <h5 className="text-[14px] pl-1 pr-1"> / </h5>
                 <input
                   className="Border border-2 rounded-[10px] w-16.25 text-[14px] border-[#d9d9d8] text-center"
-                  value={form.denominador} min="0"
+                  value={form.denominador}
+                  min="0"
                   onChange={(e) =>
                     atualizarFormulario(
                       index,
@@ -135,23 +139,14 @@ export const AumDim = ({conjunto, setConjunto} : Props) => {
               ></textarea>
 
               <div className="flex flex-col gap-4">
-
-              <button
-                onClick={Add}
-                className="bg-[#1f293A] text-white h-6.25 w-12.5 rounded-[10px] text-[12px] poppins"
-                style={{ fontWeight: 500 }}
-              >
-                {" "}
-                Add
-              </button>
-              <button
-                onClick={() => Apagar(index)}
-                className="bg-[#1f293A] text-white h-6.25 w-12.5 rounded-[10px] text-[12px] poppins"
-                style={{ fontWeight: 500 }}
-              >
-                {" "}
-                X
-              </button>
+                <button
+                  onClick={() => Apagar(index)}
+                  className="bg-[#1f293A] text-white h-6.25 w-12.5 rounded-[10px] text-[12px] poppins"
+                  style={{ fontWeight: 500 }}
+                >
+                  {" "}
+                  X
+                </button>
               </div>
             </div>
           </div>
