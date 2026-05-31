@@ -1,12 +1,25 @@
-import { Form } from "../Types/Form";
-import { LimitesLeg } from "../Types/LimitesLeg";
-import { Valores } from "../Types/Valores";
+import type { Form } from "../Types/Form";
+import type { LimitesLeg } from "../Types/LimitesLeg";
+import type { Valores } from "../Types/Valores";
 
 export interface ResultadoDosimetria {
   penaBase: string;
   penaProvisoria: string;
   penaDefinitiva: string;
 }
+
+const converterDiasParaTexto = (diasTotais: number) : string => {
+  const diasArredondados = Math.round(diasTotais);
+
+  const anos = Math.floor(diasArredondados / 365);
+  const restoAnos = diasArredondados % 365;
+
+  const meses = Math.floor(restoAnos / 30);
+  const dias = restoAnos % 30;
+
+  return `${anos} anos, ${meses} meses, ${dias} dias` 
+}
+
 
 export const calcularPena = (
   tipo: string,
@@ -18,7 +31,6 @@ export const calcularPena = (
   fracaoAgAt: { numerador: number; denominador: number },
   conjunto: Form[],
 ): ResultadoDosimetria => {
-  //   Conversao de anos e meses para dias no minimo
 
   let DiMin: number = tempo.MinAnos * 365 + tempo.MinMes * 30 + tempo.MinDias;
   let DiMax: number = tempo.MaxAnos * 365 + tempo.MaxMes * 30 + tempo.MaxDias;
@@ -34,6 +46,7 @@ export const calcularPena = (
   let ATAG: number = 0;
 
   const listaSinais = Object.values(valores);
+
 
   if (tipo !== "minima") {
     listaSinais.forEach((sinais) => {
@@ -56,7 +69,14 @@ export const calcularPena = (
       }
     }
   } else {
-    CJ = DiI + (DiI * fracao1f * valcontP) - (DiI * fracao1f * valcontN);
+    listaSinais.forEach((sinais) => {
+      if (sinais === "+") {
+        valcontP++;
+      } else if (sinais === "-") {
+        valcontN++;
+      }
+    });
+    CJ = DiMin + (DiMin * fracao1f * valcontP) - (DiMin * fracao1f * valcontN);
 
     if (CJ < DiMin) {
       CJ = DiMin;
@@ -75,9 +95,27 @@ export const calcularPena = (
     }
   }
 
+  let penaF: number = ATAG;
+
+  conjunto.forEach((causa) => {
+    if(causa.denominador === 0) {
+        return;
+    }
+      let fracao3f = causa.numerador / causa.denominador;
+
+      if(causa.tipo === 'Aumento'){
+        penaF = penaF + (penaF * fracao3f);
+      }else if(causa.tipo === 'Diminuicao'){
+        penaF = penaF - (penaF * fracao3f);
+      }
+  })
+
+
+
+
   return {
-    penaBase: "0 anos, 0 meses, 0 dias",
-    penaProvisoria: "0 anos, 0 meses, 0 dias",
-    penaDefinitiva: "0 anos, 0 meses, 0 dias",
+    penaBase: converterDiasParaTexto(CJ),
+    penaProvisoria: converterDiasParaTexto(ATAG),
+    penaDefinitiva: converterDiasParaTexto(penaF),
   };
 };

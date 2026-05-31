@@ -89,7 +89,7 @@ export const AumDim = ({conjunto, setConjunto} : Props) => {
                 }
               >
                 <option value="Aumento">Aumento</option>
-                <option value="Diminuição">Diminuição</option>
+                <option value="Diminuicao">Diminuição</option>
               </select>
 
               <div className="flex pt-1 items-center">
