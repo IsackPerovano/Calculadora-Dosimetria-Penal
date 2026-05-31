@@ -17,7 +17,19 @@ const converterDiasParaTexto = (diasTotais: number) : string => {
   const meses = Math.floor(restoAnos / 30);
   const dias = restoAnos % 30;
 
-  return `${anos} anos, ${meses} meses, ${dias} dias` 
+    const partes: string[] = [];
+
+ if (anos > 0) {
+    partes.push(anos === 1 ? "1 ano" : `${anos} anos`);
+  }
+  if (meses > 0) {
+    partes.push(meses === 1 ? "1 mês" : `${meses} meses`);
+  }
+  if (dias > 0) {
+    partes.push(dias === 1 ? "1 dia" : `${dias} dias`);
+  }
+
+  return partes.join(", ");
 }
 
 

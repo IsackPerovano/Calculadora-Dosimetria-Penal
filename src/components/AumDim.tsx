@@ -50,7 +50,7 @@ export const AumDim = ({conjunto, setConjunto} : Props) => {
 
   return (
     <div
-      className="w-212.5 ml-50 px-3.5 py-3.5 mt-5 border-2 border-[#d9d9d8] rounded-[15px] bg-white"
+      className="w-212.5 ml-50 px-3.5 py-3.5 mt-2 border-2 border-[#d9d9d8] rounded-[15px] bg-white"
       style={{ height: `${alturaContainer}` }}
     >
       <h3

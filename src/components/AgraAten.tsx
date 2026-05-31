@@ -41,7 +41,7 @@ export const AgraAten = ({}: Props) => {
   });
 
   return (
-    <div className="w-[850px] ml-50 px-3.5 py-3.5 mt-5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
+    <div className="w-[850px] ml-50 px-3.5 py-3.5 mt-2 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
       <h3
         className="flex gap-3 text-[20px] poppins"
         style={{ fontWeight: 500 }}
