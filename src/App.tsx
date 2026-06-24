@@ -1,7 +1,7 @@
 import { Circunstancias } from "./components/Cirscunstancias";
 import { Fases } from "./components/Fases";
 import { Limites } from "./components/LimitesLegais";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AgraAten } from "./components/AgraAten";
 import { AumDim } from "./components/AumDim";
 import { Resumo } from "./components/Resumo";
@@ -14,6 +14,12 @@ import "./App.css";
 
 const App = () => {
   const [Ativo, setActivo] = useState<number>(1);
+  const [modoEscuro, setModoEscuro] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", modoEscuro);
+  }, [modoEscuro]);
+
   const handclick = (aoClicar: number) => {
     setActivo(aoClicar);
   };
@@ -124,7 +130,16 @@ const App = () => {
   );
 
   return (
-    <div className="bg-[#F5F5F5] min-h-screen">
+    <div className="bg-[#F5F5F5] min-h-screen text-[#1f293A] transition-colors duration-200 dark:bg-[#0f172a] dark:text-[#f8fafc]">
+      <button
+        type="button"
+        onClick={() => setModoEscuro((ativo) => !ativo)}
+        className="fixed right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#d9d9d8] bg-white text-[18px] shadow-sm transition-colors duration-200 hover:bg-[#EEF8FF] dark:border-[#334155] dark:bg-[#1e293b] dark:hover:bg-[#334155]"
+        aria-label={modoEscuro ? "Ativar modo claro" : "Ativar modo escuro"}
+        title={modoEscuro ? "Modo claro" : "Modo escuro"}
+      >
+        {modoEscuro ? "☀" : "☾"}
+      </button>
       <div className="flex flex-row justify-center gap-6 p-6">
         <div>
           <Fases aoClicar={handclick} fase={Ativo} />

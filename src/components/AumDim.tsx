@@ -31,10 +31,6 @@ export const AumDim = ({ conjunto, setConjunto }: Props) => {
     ]);
   };
 
-  const Add = () => {
-    console.log(conjunto);
-  };
-
   const Apagar = (indexDaLinha: number) => {
     setConjunto(conjunto.filter((_, i) => i !== indexDaLinha));
   };

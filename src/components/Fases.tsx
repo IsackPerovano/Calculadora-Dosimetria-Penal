@@ -9,7 +9,7 @@ export const Fases = ({ aoClicar, fase }: Props) => {
     ${
       fase === num
         ? "bg-[#1E2C4B]  border border-[#d9d9d8] text-white"
-        : "bg-[#ffff] text-[#1E2C4B] hover:bg-[#EEF8FF] hover:text-[#1E2C4B] border border-[#d9d9d8] hover:border-[#d9d9d8]"
+        : "bg-[#ffff]  hover:bg-[#EEF8FF] hover:text-[#1E2C4B] border border-[#d9d9d8] hover:border-[#d9d9d8] dark:text-black"
     }`;
 
   return (
