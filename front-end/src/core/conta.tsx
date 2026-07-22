@@ -41,7 +41,6 @@ const converterDiasParaTexto = (diasTotais: number) : string => {
 
 
 
-
 export const calcularPena = (
   tipo: string,
   tempo: LimitesLeg,

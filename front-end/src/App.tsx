@@ -118,6 +118,31 @@ const App = () => {
       );
   }
 
+
+  async function  EnviarDados(){
+    let obj = {
+      tipo,
+      tempo,
+      valores,
+      fracao,
+      fracaoAGAT,
+      ag,
+      at, 
+      conjunto,
+    }; 
+        
+    const req = await fetch("http://localhost:8000/server.php", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(obj),
+    });
+
+    return await req.json();  
+  }
+
+
   const ResultadoCalculado = calcularPena(
   tipo,
   tempo,
