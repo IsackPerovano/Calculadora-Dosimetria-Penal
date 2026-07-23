@@ -2,12 +2,12 @@
 
 function cors(){
     if(isset($_SERVER['HTTP_ORIGIN'])){
-        header("Access-Control-Allow-Origin: http://localhost:5173");
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 
         if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
-            header("HTTP/1.1 200 OK");
+            http_response_code(200);
             exit();
         }
     }
@@ -16,39 +16,37 @@ function cors(){
 cors();
 $body = file_get_contents('php://input');
 $data = json_decode($body);
-LimitesLegais($data);
+$resultado = LimitesLegais($data);
 
-export {
-    $penaBase = '';
-    $penaProvisoria = '';
-    $penaDefinitiva = '';
-
-    $Vinicial = '';
-    $V1 = '';
-    $V2 = '';
-    $V3 = '';
+if(!$data){
+    header("Content-Type: application/json");
+    echo json_encode([
+        "penaBase" => "0 dias",
+        "penaProvisoria" => "0 dias",
+        "penaDefinitiva" => "0 dias",
+        "VI" => "0 dias",
+        "V1" => "0 dias",
+        "V2" => "0 dias",
+        "V3" => "0 dias"
+    ]);
+    exit();
 }
 
+
+
 function LimitesLegais($data){
-    
     $PenaMinima = $data->tempo->MinAnos * 365 + $data->tempo->MinMes * 30 + $data->tempo->MinDias;
     $PenaMaxima = $data->tempo->MaxAnos * 365 + $data->tempo->MaxMes * 30 + $data->tempo->MaxDias;
     $Difereca = ($PenaMaxima - $PenaMinima) / 2 + $PenaMinima;
 
-    return [
-        'PenaMinima' => $PenaMinima,
-        'PenaMaxima' => $PenaMaxima,
-        'Diferenca' => $Difereca,
-        'CircJudi' => CircunstanciasJudiciais($data, $PenaMinima, $PenaMaxima, $Difereca),
-    ];
-
+    return  CircunstanciasJudiciais($data, $PenaMinima, $PenaMaxima, $Difereca);
 }
 
 function CircunstanciasJudiciais($data, $PenaMinima, $PenaMaxima, $Difereca){
-
     $CountCircP = 0; // CountCircP => Contador de Circuntancias Judiciais Positivas;
     $CountCircN = 0; // CountCircN => Contador de Circuntancias Judiciais Negativas;
-    $fracaoCJ = $data->fracao->numerador / $data->fracao->denominador;
+   $DenominadorCJ = !empty($data->fracao->denominador) ? $data->fracao->denominador : 8;
+    $fracaoCJ = ($data->fracao->numerador ?? 1) / $DenominadorCJ;
     
     foreach($data->valores as $sinais){
         if($sinais === "+"){
@@ -61,44 +59,46 @@ function CircunstanciasJudiciais($data, $PenaMinima, $PenaMaxima, $Difereca){
     $basecalculo = $data->tipo !== "minima" ? $Difereca : $PenaMinima;
     $CircJud = $basecalculo + ($basecalculo * $fracaoCJ * $CountCircP) - ($basecalculo * $fracaoCJ * $CountCircN);
 
-    $CircJud < $PenaMinima ? $CircJud = $PenaMinima : $CircJud;
-    $CircJud > $PenaMaxima ? $CircJud = $PenaMaxima : $CircJud;
+    if ($CircJud < $PenaMinima) $CircJud = $PenaMinima;
+    if ($CircJud > $PenaMaxima) $CircJud = $PenaMaxima;
 
-    return AtenuantesAgravantes($data, $CircJud, $PenaMinima, $PenaMaxima, $Difereca);
+    return AtenuantesAgravantes($data, $CircJud, $PenaMinima, $PenaMaxima, $Difereca, $basecalculo);
 }
 
-function AtenuantesAgravantes($data, $CircJud, $PenaMinima, $PenaMaxima){
+function AtenuantesAgravantes($data, $CircJud, $PenaMinima, $PenaMaxima, $basecalculo){
+    $ag = $data->ag ?? 0;
+    $at = $data->at ?? 0;
 
-    $ag = $data->ag;
-    $at = $data->at;
-    $fracaoAGAT = $data->fracaoAGAT->numerador / $data->fracaoAGAT->denominador;
-
+    $DenominadorATAG = !empty($data->fracao->denominador) ? $data->fracao->denominador : 6;
+    $fracaoAGAT = ($data->fracao->numerador ?? 1) / $DenominadorATAG;
+    
     $AtenAgrav = $CircJud + ($CircJud * $fracaoAGAT * $ag) - ($CircJud * $fracaoAGAT * $at);
 
-    $AtenAgrav < $PenaMinima ? $AtenAgrav = $PenaMinima : $AtenAgrav;
-    $AtenAgrav > $PenaMaxima ? $AtenAgrav = $PenaMaxima : $AtenAgrav;
+    if ($AtenAgrav < $PenaMinima) $AtenAgrav = $PenaMinima;
+    if ($AtenAgrav > $PenaMaxima) $AtenAgrav = $PenaMaxima;
 
-    return PenaDefinitiva($data, $AtenAgrav);
+    return PenaDefinitiva($data, $CircJud, $AtenAgrav, $basecalculo);
 }
 
-function PenaDefinitiva($data, $AtenAgrav){
+function PenaDefinitiva($data, $CircJud, $AtenAgrav, $basecalculo){
 
     foreach($data->conjunto as $causa){
-        if(!$causa->denominador || $causa->denominador === 0 || !$causa->numerador || $causa->numerador === 0){
-            continue;
+        if(empty($causa->denominador) || empty($causa->numerador)){
+                continue;
         }
 
         $FracaoPenaDef = $causa->numerador / $causa->denominador;
+        $PenaDef = $AtenAgrav;
 
         $causa->tipo === 'Aumento' ? $PenaDef = $AtenAgrav + ($AtenAgrav * $FracaoPenaDef) : $PenaDef = $AtenAgrav - ($AtenAgrav * $FracaoPenaDef);  
     }
 
-    return $PenaDef;
+    return Varicacoes($CircJud, $AtenAgrav, $PenaDef, $basecalculo);
 }
 
-function Varicacoes($PenaMinima, $CircJud, $AtenAgrav, $PenaDef){
-    $VariacaoInicial = $PenaMinima;
-    $Variacao1 = $CircJud - $PenaMinima;
+function Varicacoes($CircJud, $AtenAgrav, $PenaDef, $basecalculo){
+    $VariacaoInicial = $basecalculo;
+    $Variacao1 = $CircJud - $basecalculo;
     $Variacao2 = $AtenAgrav - $CircJud;
     $Variacao3 = $PenaDef - $AtenAgrav;
 
@@ -110,34 +110,34 @@ function Varicacoes($PenaMinima, $CircJud, $AtenAgrav, $PenaDef){
     $Variacao3 > 0 ? $sinalV3 = "+ " : $sinalV3 = "- " ;
 
    return [
-    $penaBase = converterDiasParaTexto($CircJud),
-    $penaProvisoria = converterDiasParaTexto($AtenAgrav),
-    $penaDefinitiva = converterDiasParaTexto($PenaDef),
+    "penaBase" => converterDiasParaTexto($CircJud),
+    "penaProvisoria" => converterDiasParaTexto($AtenAgrav),
+    "penaDefinitiva" => converterDiasParaTexto($PenaDef),
     
-    $VInicial = converterDiasParaTexto($VariacaoInicial), 
-    $V1 = $Variacao1 === 0 ? "0 dias" : `$sinalV1 converterDiasParaTexto($Variacao1)`, 
-    $V2 = $Variacao2 === 0 ? "0 dias" : `$sinalV2 converterDiasParaTexto($Variacao2)`, 
-    $V3 = $Variacao3 === 0 ? "0 dias" : `$sinalV3 converterDiasParaTexto($Variacao3)`
+    "VInicial" => converterDiasParaTexto($VariacaoInicial), 
+    "V1" => $Variacao1 == 0 ? "0 dias" : $sinalV1 . converterDiasParaTexto($Variacao1),
+    "V2" => $Variacao2 == 0 ? "0 dias" : $sinalV2 . converterDiasParaTexto($Variacao2),
+    "V3" => $Variacao3 == 0 ? "0 dias" : $sinalV3 . converterDiasParaTexto($Variacao3)
    ];
   
 }
 
 function converterDiasParaTexto($diasTotais){
-$diasArredondados = floor(abs($diasTotais));
+    $diasArredondados = floor(abs($diasTotais));
 
-if($diasArredondados === 0) return "0 dias";
+    if($diasArredondados === 0) return "0 dias";
 
-$anos = floor($diasArredondados / 365);
-$restoAnos = $diasArredondados % 365;
+    $anos = floor($diasArredondados / 365);
+    $restoAnos = $diasArredondados % 365;
 
-$meses = floor($restoAnos / 30);
-$dias = $restoAnos % 30;
+    $meses = floor($restoAnos / 30);
+    $dias = $restoAnos % 30;
 
-$partes = [];
+    $partes = [];
 
-if($anos > 0) array_push($partes, $anos === 1 ? "1 ano" : `$anos anos`);
-if($meses > 0) array_push($partes, $meses === 1 ? "1 mês" : `$meses meses`);
-if($dias > 0) array_push($partes, $dias === 1 ? "1 dia" : `$dias dias`);
+    if($anos > 0) array_push($partes, $anos === 1 ? "1 ano" : $anos . "anos");
+    if($meses > 0) array_push($partes, $meses === 1 ? "1 mês" : $meses . "meses");
+    if($dias > 0) array_push($partes, $dias === 1 ? "1 dia" : $dias . "dias");
 
-return implode(", ", $partes);
+    return implode(", ", $partes);
 }

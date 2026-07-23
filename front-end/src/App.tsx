@@ -20,6 +20,7 @@ const App = () => {
     document.documentElement.classList.toggle("dark", modoEscuro);
   }, [modoEscuro]);
 
+
   const handclick = (aoClicar: number) => {
     setActivo(aoClicar);
   };
@@ -118,6 +119,16 @@ const App = () => {
       );
   }
 
+  const [resultado, setResultado] = useState({
+  penaBase: "0 dias",
+  penaProvisoria: "0 dias",
+  penaDefinitiva: "0 dias",
+  VI: "0 dias",
+  V1: "0 dias",
+  V2: "0 dias",
+  V3: "0 dias"
+});
+
 
   async function  EnviarDados(){
     let obj = {
@@ -131,7 +142,8 @@ const App = () => {
       conjunto,
     }; 
         
-    const req = await fetch("http://localhost:8000/server.php", {
+    try{
+      const req = await fetch("http://localhost:8000/server.php", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -139,20 +151,30 @@ const App = () => {
       body: JSON.stringify(obj),
     });
 
-    return await req.json();  
+    if (!req.ok) {
+      throw new Error(`Erro na resposta do servidor: ${req.status}`);
+    }
+
+    // const dadosPHP = await req.json();
+
+    const textoResposta = await req.text();
+console.log("Resposta bruta do PHP:", textoResposta);
+
+// Depois tenta converter
+const dadosPHP = JSON.parse(textoResposta);  
+
+
+    setResultado(dadosPHP);
+
+
+    }catch(error){
+      console.error("Erro ao comunicar com o sevidor PHP", error);
+    }
   }
-
-
-  const ResultadoCalculado = calcularPena(
-  tipo,
-  tempo,
-  valores,
-  fracao,
-  ag,
-  at,
-  fracaoAGAT,
-  conjunto
-  );
+  
+  useEffect(() => {
+    EnviarDados();
+  }, [tipo, tempo, valores, fracao, fracaoAGAT, ag, at, conjunto]);
 
   return (
     <div className="bg-[#F5F5F5] min-h-screen text-[#1f293A] transition-colors duration-200 dark:bg-[#0f172a] dark:text-[#f8fafc]">
@@ -173,13 +195,13 @@ const App = () => {
 
         <div className="pt-2">
           <Resumo 
-            penaB={ResultadoCalculado.penaBase}
-            penaP={ResultadoCalculado.penaProvisoria}
-            penaD={ResultadoCalculado.penaDefinitiva}
-            VI={ResultadoCalculado.VI}
-            V1={ResultadoCalculado.V1}
-            V2={ResultadoCalculado.V2}
-            V3={ResultadoCalculado.V3}
+            penaB={resultado.penaBase}
+            penaP={resultado.penaProvisoria}
+            penaD={resultado.penaDefinitiva}
+            VI={resultado.VI}
+            V1={resultado.V1}
+            V2={resultado.V2}
+            V3={resultado.V3}
            />
         </div>
       </div>
