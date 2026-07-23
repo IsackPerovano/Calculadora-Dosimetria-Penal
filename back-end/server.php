@@ -1,43 +1,36 @@
 <?php
 
-function cors(){
-    if(isset($_SERVER['HTTP_ORIGIN'])){
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-        header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-        if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
-            http_response_code(200);
-            exit();
-        }
-    }
+if(isset($_SERVER['HTTP_ORIGIN'])){
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Content-Type: application/json; charset=UTF-8");
+
+if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
+    http_response_code(200);
+    echo json_encode(["status" => "ok"]);
+    exit;
+}
 }
 
-cors();
 $body = file_get_contents('php://input');
 $data = json_decode($body);
-$resultado = LimitesLegais($data);
 
 if(!$data){
-    header("Content-Type: application/json");
-    echo json_encode([
-        "penaBase" => "0 dias",
-        "penaProvisoria" => "0 dias",
-        "penaDefinitiva" => "0 dias",
-        "VI" => "0 dias",
-        "V1" => "0 dias",
-        "V2" => "0 dias",
-        "V3" => "0 dias"
-    ]);
-    exit();
+    http_response_code(400);
+    echo json_encode(["erro" => "Nenhum dado recebido pelo PHP", "input_recebido" => $body]);
+    exit;
 }
-
-
 
 function LimitesLegais($data){
     $PenaMinima = $data->tempo->MinAnos * 365 + $data->tempo->MinMes * 30 + $data->tempo->MinDias;
     $PenaMaxima = $data->tempo->MaxAnos * 365 + $data->tempo->MaxMes * 30 + $data->tempo->MaxDias;
     $Difereca = ($PenaMaxima - $PenaMinima) / 2 + $PenaMinima;
+
 
     return  CircunstanciasJudiciais($data, $PenaMinima, $PenaMaxima, $Difereca);
 }
@@ -62,7 +55,7 @@ function CircunstanciasJudiciais($data, $PenaMinima, $PenaMaxima, $Difereca){
     if ($CircJud < $PenaMinima) $CircJud = $PenaMinima;
     if ($CircJud > $PenaMaxima) $CircJud = $PenaMaxima;
 
-    return AtenuantesAgravantes($data, $CircJud, $PenaMinima, $PenaMaxima, $Difereca, $basecalculo);
+    return AtenuantesAgravantes($data, $CircJud, $PenaMinima, $PenaMaxima, $basecalculo);
 }
 
 function AtenuantesAgravantes($data, $CircJud, $PenaMinima, $PenaMaxima, $basecalculo){
@@ -81,14 +74,14 @@ function AtenuantesAgravantes($data, $CircJud, $PenaMinima, $PenaMaxima, $baseca
 }
 
 function PenaDefinitiva($data, $CircJud, $AtenAgrav, $basecalculo){
-
+    
+    $PenaDef = $AtenAgrav;
     foreach($data->conjunto as $causa){
         if(empty($causa->denominador) || empty($causa->numerador)){
                 continue;
         }
 
         $FracaoPenaDef = $causa->numerador / $causa->denominador;
-        $PenaDef = $AtenAgrav;
 
         $causa->tipo === 'Aumento' ? $PenaDef = $AtenAgrav + ($AtenAgrav * $FracaoPenaDef) : $PenaDef = $AtenAgrav - ($AtenAgrav * $FracaoPenaDef);  
     }
@@ -141,3 +134,7 @@ function converterDiasParaTexto($diasTotais){
 
     return implode(", ", $partes);
 }
+
+$resultado = LimitesLegais($data);
+echo json_encode($resultado);
+exit;

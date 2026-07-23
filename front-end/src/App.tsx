@@ -130,7 +130,7 @@ const App = () => {
 });
 
 
-  async function  EnviarDados(){
+  const EnviarDados = async () => {
     let obj = {
       tipo,
       tempo,
@@ -143,28 +143,25 @@ const App = () => {
     }; 
         
     try{
-      const req = await fetch("http://localhost:8000/server.php", {
+      const req = await fetch("http://localhost:8000/back-end/server.php", {
       method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(obj),
     });
-
-    if (!req.ok) {
-      throw new Error(`Erro na resposta do servidor: ${req.status}`);
-    }
-
-    // const dadosPHP = await req.json();
+    if (!req.ok) {throw new Error(`Erro na resposta do servidor: ${req.status}`)}
 
     const textoResposta = await req.text();
-console.log("Resposta bruta do PHP:", textoResposta);
 
-// Depois tenta converter
-const dadosPHP = JSON.parse(textoResposta);  
+    if (!textoResposta || textoResposta.trim() === "") {
+      throw new Error("O servidor respondeu com um corpo vazio.");
+    }
+    
+    console.log("Resposta do PHP:", textoResposta);
 
+    if (!textoResposta) {throw new Error("O servidor respondeu com um corpo vazio.")}
 
-    setResultado(dadosPHP);
+    const dados = JSON.parse(textoResposta);
+    setResultado(dados);
 
 
     }catch(error){
