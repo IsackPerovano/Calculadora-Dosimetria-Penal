@@ -28,7 +28,7 @@ export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
         Defina a pena mínima e máxima prevista no tipo penal.
       </h4>
 
-      <div className="flex gap-5 md:gap-14 ">
+      <div className="flex flex-col gap-5 md:flex-row md:gap-14 lg:gap-46.5">
         <div className="flex pt-4">
           {/* PENA MÍNIMA */}
           <div>

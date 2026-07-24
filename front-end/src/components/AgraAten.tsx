@@ -87,8 +87,8 @@ export const AgraAten = ({
         />
       </div>
 
-      <div className="flex flex-col gap-4 pt-4 sm:flex-row ">
-        <div className="flex-1">
+      <div className="flex flex-col md:flex-row gap-4 pt-4  lg:gap-33.5">
+        <div className="flex-1 lg:w-[340px] lg:flex-none">
           <div className="flex place-content-between">
             <h3 className=" text-[14px] poppins " style={{ fontWeight: 700 }}>
               Agravantes
@@ -99,7 +99,7 @@ export const AgraAten = ({
             </h3>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 md:gap-4 lg:gap-5">
             <div className="flex-1">
               <div onClick={AGMenos}>
                 <button className="flex h-7.5 w-full items-center justify-center rounded-[10px] border border-[#d9d9d8] transition duration-200 hover:bg-[#1E2C4B] hover:text-white sm:w-40">
@@ -120,7 +120,7 @@ export const AgraAten = ({
           </div>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 lg:w-[340px] lg:flex-none">
           <div className="flex place-content-between">
             <h3 className=" text-[14px] poppins" style={{ fontWeight: 700 }}>
               Atenuantes
@@ -131,7 +131,7 @@ export const AgraAten = ({
             </h3>
           </div>
 
-          <div className="flex gap-2 sm:gap-5">
+          <div className="flex gap-2 md:gap-4 lg:gap-6">
             <div className="flex-1">
               <div onClick={ATMenos}>
                 <button className="flex h-7.5 w-full items-center justify-center rounded-[10px] border border-[#d9d9d8] text-[14px] transition duration-200 hover:bg-[#1E2C4B] hover:text-white sm:w-40">
