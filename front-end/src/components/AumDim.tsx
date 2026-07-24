@@ -44,13 +44,8 @@ export const AumDim = ({ conjunto, setConjunto }: Props) => {
   const podeAdicionar =
     conjunto.length === 0 ||
     formularioPreenchido(conjunto[conjunto.length - 1]);
-  const alturaContainer = 60 + conjunto.length + 30;
-
   return (
-    <div
-      className="w-212.5  px-3.5 py-3.5 mt-2 border-2 border-[#d9d9d8] rounded-[15px] bg-white"
-      style={{ height: `${alturaContainer}` }}
-    >
+    <div className="mt-2 w-full rounded-[15px] border-2 border-[#d9d9d8] bg-white px-3.5 py-3.5 lg:w-[850px]">
       <h3
         className="flex gap-3 text-[20px] poppins"
         style={{ fontWeight: 500 }}
@@ -77,9 +72,9 @@ export const AumDim = ({ conjunto, setConjunto }: Props) => {
       {conjunto.map((form, index) => (
         <div className="mt-4" key={index}>
           <div className="border border-[#d9d9d8] rounded-[10px] p-2">
-            <div className="flex gap-3 items-center">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <select
-                className="border border-[#d9d9d8] rounded-[10px] h-7.5 w-37.5 text-center text-[14px] poppins"
+                className="h-7.5 w-full rounded-[10px] border border-[#d9d9d8] text-center text-[14px] poppins sm:w-37.5"
                 style={{ fontWeight: 500 }}
                 value={form.tipo}
                 onChange={(e) =>
@@ -90,7 +85,7 @@ export const AumDim = ({ conjunto, setConjunto }: Props) => {
                 <option value="Diminuicao">Diminuição</option>
               </select>
 
-              <div className="flex pt-1 items-center">
+              <div className="flex flex-wrap items-center pt-1">
                 <h5
                   className="pr-1 poppins text-[14px]"
                   style={{ fontWeight: 500 }}
@@ -127,17 +122,17 @@ export const AumDim = ({ conjunto, setConjunto }: Props) => {
               </div>
 
               <textarea
-                className="border border-[#d9d9d8] rounded-[10px] h-18.75 w-75 text-[12px] p-1"
+                className="h-18.75 w-full flex-1 rounded-[10px] border border-[#d9d9d8] p-1 text-[12px] sm:w-75"
                 value={form.obs}
                 onChange={(e) =>
                   atualizarFormulario(index, "obs", e.target.value)
                 }
               ></textarea>
 
-              <div className="flex flex-col gap-4">
+              <div className="flex sm:flex-col sm:gap-4">
                 <button
                   onClick={() => Apagar(index)}
-                  className="bg-[#1f293A] text-white h-6.25 w-12.5 rounded-[10px] text-[12px] poppins"
+                  className="h-6.25 w-full rounded-[10px] bg-[#1f293A] text-[12px] text-white poppins sm:w-12.5"
                   style={{ fontWeight: 500 }}
                 >
                   {" "}

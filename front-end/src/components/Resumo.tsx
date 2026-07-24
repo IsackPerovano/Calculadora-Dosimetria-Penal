@@ -13,7 +13,7 @@ type Props = {
 
 export const Resumo = ({ penaB, penaP, penaD, VI, V1, V2, V3 }: Props) => {
   return (
-    <div className="w-[600px] px-3.5 py-3.5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
+    <div className="w-full rounded-[15px] border-2 border-[#d9d9d8] bg-white px-3.5 py-3.5 lg:w-[600px]">
       <h3
         className="flex gap-3 text-[20px] poppins"
         style={{ fontWeight: 500 }}

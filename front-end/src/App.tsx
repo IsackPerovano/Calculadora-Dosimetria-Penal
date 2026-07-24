@@ -155,7 +155,7 @@ const App = () => {
     if (!textoResposta || textoResposta.trim() === "") {
       throw new Error("O servidor respondeu com um corpo vazio.");
     }
-    
+
     console.log("Resposta do PHP:", textoResposta);
 
     if (!textoResposta) {throw new Error("O servidor respondeu com um corpo vazio.")}
@@ -184,13 +184,13 @@ const App = () => {
       >
         {modoEscuro ? "☀" : "☾"}
       </button>
-      <div className="flex flex-row justify-center gap-6 p-6">
-        <div>
+      <div className="mx-auto flex w-full max-w-[1500px] flex-col gap-4 p-3 pt-16 sm:p-6 sm:pt-16 lg:flex-row lg:items-start lg:justify-center lg:gap-6">
+        <main className="min-w-0 flex-1 lg:max-w-[850px]">
           <Fases aoClicar={handclick} fase={Ativo} />
           {conteudo}
-        </div>
+        </main>
 
-        <div className="pt-2">
+        <aside className="w-full lg:w-[600px] lg:pt-2">
           <Resumo 
             penaB={resultado.penaBase}
             penaP={resultado.penaProvisoria}
@@ -200,7 +200,7 @@ const App = () => {
             V2={resultado.V2}
             V3={resultado.V3}
            />
-        </div>
+        </aside>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ type Props = {
 export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
  
   return (
-    <div className="w-[850px]  mt-2 px-3.5 py-3.5 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
+    <div className="mt-2 w-full rounded-[15px] border-2 border-[#d9d9d8] bg-white px-3.5 py-3.5 lg:w-[850px]">
       {/* TITULOS */}
       <h3
         className="flex gap-3 text-[20px] poppins"
@@ -28,7 +28,7 @@ export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
         Defina a pena mínima e máxima prevista no tipo penal.
       </h4>
 
-      <div className="flex place-content-between">
+      <div className="flex gap-5 md:gap-14 ">
         <div className="flex pt-4">
           {/* PENA MÍNIMA */}
           <div>
@@ -39,13 +39,13 @@ export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
               Pena Mínima
             </h3>
 
-            <div className="flex gap-5">
+            <div className="flex gap-2">
               <div
-                className="flex flex-col  items-center poppins "
+                className="flex flex-1 flex-col items-center poppins sm:flex-none"
                 style={{ fontWeight: 300 }}
               >
                 <input
-                  className="Border w-25 border border-[#d9d9d8] rounded-[10px] text-center"
+                  className="Border w-full border border-[#d9d9d8] rounded-[10px] text-center sm:w-25"
                   type="number"
                   min="0"
                   value={tempo.MinAnos}
@@ -60,11 +60,11 @@ export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
                 <h5 className="text-[12px]">Anos</h5>
               </div>
               <div
-                className="flex flex-col items-center poppins "
+                className="flex flex-1 flex-col items-center poppins sm:flex-none"
                 style={{ fontWeight: 300 }}
               >
                 <input
-                  className="Border w-25  border border-[#d9d9d8] rounded-[10px] text-center"
+                  className="Border w-full border border-[#d9d9d8] rounded-[10px] text-center sm:w-25"
                   type="number"
                   min="0"
                   value={tempo.MinMes}
@@ -79,11 +79,11 @@ export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
                 <h5 className="text-[12px]">Meses</h5>
               </div>
               <div
-                className="flex flex-col items-center poppins"
+                className="flex flex-1 flex-col items-center poppins sm:flex-none"
                 style={{ fontWeight: 300 }}
               >
                 <input
-                  className="Border w-25  border border-[#d9d9d8] rounded-[10px] text-center"
+                  className="Border w-full border border-[#d9d9d8] rounded-[10px] text-center sm:w-25"
                   type="number"
                   min="0"
                   value={tempo.MinDias}
@@ -111,13 +111,13 @@ export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
               Pena Maxima
             </h3>
 
-            <div className="flex gap-5">
+            <div className="flex gap-2">
               <div
-                className="flex flex-col  items-center poppins pr-3.5"
+                className="flex flex-1 flex-col items-center poppins sm:flex-none"
                 style={{ fontWeight: 300 }}
               >
                 <input
-                  className="Border w-25 border border-[#d9d9d8] rounded-[10px] text-center"
+                  className="Border w-full border border-[#d9d9d8] rounded-[10px] text-center sm:w-25"
                   type="number"
                   min="0"
                   value={tempo.MaxAnos}
@@ -132,11 +132,11 @@ export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
                 <h5 className="text-[12px]">Anos</h5>
               </div>
               <div
-                className="flex flex-col items-center poppins pr-3.5"
+                className="flex flex-1 flex-col items-center poppins sm:flex-none"
                 style={{ fontWeight: 300 }}
               >
                 <input
-                  className="Border w-25  border border-[#d9d9d8] rounded-[10px] text-center"
+                  className="Border w-full border border-[#d9d9d8] rounded-[10px] text-center sm:w-25"
                   type="number"
                   min="0"
                   value={tempo.MaxMes}
@@ -151,11 +151,11 @@ export const Limites = ({tipo, setTipo, tempo, setTempo}: Props) => {
                 <h5 className="text-[12px]">Meses</h5>
               </div>
               <div
-                className="flex flex-col items-center poppins"
+                className="flex flex-1 flex-col items-center poppins sm:flex-none"
                 style={{ fontWeight: 300 }}
               >
                 <input
-                  className="Border w-25  border border-[#d9d9d8] rounded-[10px] text-center"
+                  className="Border w-full border border-[#d9d9d8] rounded-[10px] text-center sm:w-25"
                   type="number"
                   min="0"
                   value={tempo.MaxDias}

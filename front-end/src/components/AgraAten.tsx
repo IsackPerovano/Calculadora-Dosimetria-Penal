@@ -40,7 +40,7 @@ export const AgraAten = ({
   };
 
   return (
-    <div className="w-[850px]  px-3.5 py-3.5 mt-2 border-2 border-[#d9d9d8] rounded-[15px]  bg-white">
+    <div className="mt-2 w-full rounded-[15px] border-2 border-[#d9d9d8] bg-white px-3.5 py-3.5 lg:w-[850px]">
       <h3
         className="flex gap-3 text-[20px] poppins"
         style={{ fontWeight: 500 }}
@@ -56,7 +56,7 @@ export const AgraAten = ({
         Arts. 61 a 66 do Código Penal.
       </h4>
 
-      <div className="flex pt-2 items-center">
+      <div className="flex flex-wrap items-center pt-2">
         <h5 className="pr-1 poppins text-[12px]" style={{ fontWeight: 400 }}>
           Valor de cada Agravante e Atenuante:
         </h5>
@@ -87,8 +87,8 @@ export const AgraAten = ({
         />
       </div>
 
-      <div className="flex  pt-4 place-content-between">
-        <div>
+      <div className="flex flex-col gap-4 pt-4 sm:flex-row ">
+        <div className="flex-1">
           <div className="flex place-content-between">
             <h3 className=" text-[14px] poppins " style={{ fontWeight: 700 }}>
               Agravantes
@@ -99,19 +99,19 @@ export const AgraAten = ({
             </h3>
           </div>
 
-          <div className="flex  gap-5">
-            <div>
+          <div className="flex gap-2">
+            <div className="flex-1">
               <div onClick={AGMenos}>
-                <button className="rounded-[10px] border border-[#d9d9d8] hover:bg-[#1E2C4B]  hover:text-white transition duration-200 w-40  h-7.5 flex items-center justify-center ">
+                <button className="flex h-7.5 w-full items-center justify-center rounded-[10px] border border-[#d9d9d8] transition duration-200 hover:bg-[#1E2C4B] hover:text-white sm:w-40">
                   {" "}
                   -{" "}
                 </button>
               </div>
             </div>
 
-            <div>
+            <div className="flex-1">
               <div onClick={AGMais}>
-                <button className="rounded-[10px] text-[14px] border border-[#d9d9d8] hover:bg-[#1E2C4B]  hover:text-white transition w-40  duration-200 h-7.5 flex items-center justify-center ">
+                <button className="flex h-7.5 w-full items-center justify-center rounded-[10px] border border-[#d9d9d8] text-[14px] transition duration-200 hover:bg-[#1E2C4B] hover:text-white sm:w-40">
                   {" "}
                   +{" "}
                 </button>
@@ -120,7 +120,7 @@ export const AgraAten = ({
           </div>
         </div>
 
-        <div>
+        <div className="flex-1">
           <div className="flex place-content-between">
             <h3 className=" text-[14px] poppins" style={{ fontWeight: 700 }}>
               Atenuantes
@@ -131,19 +131,19 @@ export const AgraAten = ({
             </h3>
           </div>
 
-          <div className="flex gap-5">
-            <div>
+          <div className="flex gap-2 sm:gap-5">
+            <div className="flex-1">
               <div onClick={ATMenos}>
-                <button className="rounded-[10px] border border-[#d9d9d8] hover:bg-[#1E2C4B]  hover:text-white transition  duration-200  text-[14px] w-40 h-7.5 flex items-center justify-center">
+                <button className="flex h-7.5 w-full items-center justify-center rounded-[10px] border border-[#d9d9d8] text-[14px] transition duration-200 hover:bg-[#1E2C4B] hover:text-white sm:w-40">
                   {" "}
                   -{" "}
                 </button>
               </div>
             </div>
 
-            <div>
+            <div className="flex-1">
               <div onClick={ATMais}>
-                <button className="rounded-[10px] border border-[#d9d9d8] hover:bg-[#1E2C4B]  hover:text-white transition  duration-200  w-40 h-7.5 flex items-center justify-center text-[14px]">
+                <button className="flex h-7.5 w-full items-center justify-center rounded-[10px] border border-[#d9d9d8] text-[14px] transition duration-200 hover:bg-[#1E2C4B] hover:text-white sm:w-40">
                   {" "}
                   +{" "}
                 </button>

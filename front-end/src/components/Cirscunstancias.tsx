@@ -19,7 +19,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
   };
 
   return (
-    <div className="w-212.5 border-2 mt-2 px-3.5 py-3.5 rounded-[15px] border-[#d9d9d8] bg-white  mt-1">
+    <div className="mt-2 w-full rounded-[15px] border-2 border-[#d9d9d8] bg-white px-3.5 py-3.5 lg:w-[850px]">
       <h3
         className="flex gap-3 text-[20px] poppins"
         style={{ fontWeight: 500 }}
@@ -35,7 +35,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
         Selecione as circunstâncias que devem ser valoradas.
       </h4>
 
-      <div className="flex pt-2 items-center">
+      <div className="flex flex-wrap items-center pt-2">
         <h5 className="pr-1 poppins text-[12px]" style={{ fontWeight: 400 }}>
           Valor de cada Circunstancia:
         </h5>
@@ -66,7 +66,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
         />
       </div>
 
-      <div className="pt-5 grid grid-cols-2 gap-2">
+      <div className="grid grid-flow-col auto-cols-[minmax(17rem,82vw)] gap-2 overflow-x-auto pb-2 pt-5 lg:grid-flow-row lg:auto-cols-auto lg:grid-cols-2 lg:overflow-visible lg:pb-0">
         <div className="border border-[#d9d9d8] rounded-[10px] p-2 flex flex-col justify-between min-h-[140px]">
           <h2
             className="poppins text-[14px] poppins"
@@ -91,7 +91,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("culpabilidade", "+")}
                 className={`... ${valores.culpabilidade === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center `}
+     w-full h-6 flex items-center justify-center `}
               >
                 +
               </div>
@@ -107,7 +107,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("culpabilidade", "-")}
                 className={`... ${valores.culpabilidade === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center `}
+   w-full h-6 flex items-center justify-center `}
               >
                 -
               </div>
@@ -138,7 +138,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("antecedentes", "+")}
                 className={`... ${valores.antecedentes === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center `}
+    w-full h-6 flex items-center justify-center `}
               >
                 +
               </div>
@@ -150,7 +150,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("antecedentes", "-")}
                 className={`... ${valores.antecedentes === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center `}
+    w-full h-6 flex items-center justify-center `}
               >
                 -
               </div>
@@ -179,7 +179,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("condutaSocial", "+")}
                 className={`... ${valores.condutaSocial === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center `}
+    w-full h-6 flex items-center justify-center `}
               >
                 +
               </div>
@@ -191,7 +191,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("condutaSocial", "-")}
                 className={`... ${valores.condutaSocial === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center `}
+    w-full h-6 flex items-center justify-center `}
               >
                 -
               </div>
@@ -230,7 +230,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("personalidade", "+")}
                 className={`${valores.personalidade === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""} poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center `}
+    w-full h-6 flex items-center justify-center `}
               >
                 +
               </div>
@@ -246,7 +246,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("personalidade", "-")}
                 className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center ${valores.personalidade === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+    w-full h-6 flex items-center justify-center ${valores.personalidade === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
               >
                 -
               </div>
@@ -281,7 +281,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("motivos", "+")}
                 className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center ${valores.motivos === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+    w-full h-6 flex items-center justify-center ${valores.motivos === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
               >
                 +
               </div>
@@ -293,7 +293,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("motivos", "-")}
                 className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center ${valores.motivos === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+    w-full h-6 flex items-center justify-center ${valores.motivos === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
               >
                 -
               </div>
@@ -332,7 +332,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("circunstancias", "+")}
                 className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center ${valores.circunstancias === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+    w-full h-6 flex items-center justify-center ${valores.circunstancias === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
               >
                 +
               </div>
@@ -348,7 +348,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("circunstancias", "-")}
                 className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center ${valores.circunstancias === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+    w-full h-6 flex items-center justify-center ${valores.circunstancias === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
               >
                 -
               </div>
@@ -383,7 +383,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("consequencias", "+")}
                 className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center ${valores.consequencias === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+    w-full h-6 flex items-center justify-center ${valores.consequencias === "+" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
               >
                 +
               </div>
@@ -395,7 +395,7 @@ export const Circunstancias = ({valores, SetValores, fracao, setFracao} : Props)
               <div
                 onClick={() => handleClick("consequencias", "-")}
                 className={`poppins text-[14px] rounded-[5px] border border-[#d9d9d8] 
-    w-40 h-6 flex items-center justify-center ${valores.consequencias === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
+    w-full h-6 flex items-center justify-center ${valores.consequencias === "-" ? "bg-[#1E2C4B] text-white transition-colors duration-200" : ""}`}
               >
                 -
               </div>
