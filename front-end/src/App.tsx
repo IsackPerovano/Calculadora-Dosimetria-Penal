@@ -184,13 +184,13 @@ const App = () => {
       >
         {modoEscuro ? "☀" : "☾"}
       </button>
-      <div className="mx-auto flex w-full max-w-[1500px] flex-col gap-4 p-3 pt-16 sm:p-6 sm:pt-16 lg:flex-row lg:items-start lg:justify-center lg:gap-6">
-        <main className="min-w-0 flex-1 lg:max-w-[850px]">
+      <div className="mx-auto flex w-full max-w-[1500px] flex-col items-center gap-4 p-3 pt-16 sm:p-6 sm:pt-16 xl:flex-row xl:items-start xl:justify-center xl:gap-6">
+        <main className="w-full min-w-0 max-w-[850px] xl:flex-1">
           <Fases aoClicar={handclick} fase={Ativo} />
           {conteudo}
         </main>
 
-        <aside className="w-full lg:w-[600px] lg:pt-2">
+        <aside className="w-full max-w-[600px] xl:w-[600px] xl:pt-2">
           <Resumo 
             penaB={resultado.penaBase}
             penaP={resultado.penaProvisoria}
