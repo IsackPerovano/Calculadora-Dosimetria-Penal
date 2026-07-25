@@ -143,7 +143,7 @@ const App = () => {
     }; 
         
     try{
-      const req = await fetch("http://localhost:8000/back-end/server.php", {
+      const req = await fetch("https://calculadora-penal-api.onrender.com/server.php", {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(obj),
