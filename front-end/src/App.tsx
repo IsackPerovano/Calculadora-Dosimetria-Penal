@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { AgraAten } from "./components/AgraAten";
 import { AumDim } from "./components/AumDim";
 import { Resumo } from "./components/Resumo";
-import { calcularPena } from "./core/conta";
 import type { Valores } from "./Types/Valores";
 import type { LimitesLeg } from "./Types/LimitesLeg";
 import type { Form } from "./Types/Form";
@@ -174,7 +173,7 @@ const App = () => {
   }, [tipo, tempo, valores, fracao, fracaoAGAT, ag, at, conjunto]);
 
   return (
-    <div className="bg-[#F5F5F5] min-h-screen text-[#1f293A] transition-colors duration-200 dark:bg-[#0f172a] dark:text-[#f8fafc]">
+    <div className="flex min-h-screen flex-col bg-[#F5F5F5] text-[#1f293A] transition-colors duration-200 dark:bg-[#0f172a] dark:text-[#f8fafc]">
       <button
         type="button"
         onClick={() => setModoEscuro((ativo) => !ativo)}
@@ -202,6 +201,25 @@ const App = () => {
            />
         </aside>
       </div>
+
+      <footer className="mt-auto px-3 pb-4 pt-2 sm:px-6">
+        <a
+          href="https://github.com/IsackPerovano"
+          target="_blank"
+          rel="noreferrer"
+          className="mx-auto flex w-fit items-center gap-2 rounded-lg px-3 py-2 text-sm text-[#1f293A] transition-colors hover:bg-[#EEF8FF] dark:text-[#f8fafc] dark:hover:bg-[#1e293b]"
+          aria-label="Visitar o GitHub de IsackPerovano"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            className="h-5 w-5 fill-current"
+          >
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.483 0-.237-.009-1.024-.013-1.858-2.782.604-3.369-1.18-3.369-1.18-.455-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.004.07 1.532 1.03 1.532 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.349-1.087.635-1.337-2.221-.253-4.555-1.111-4.555-4.944 0-1.092.39-1.984 1.029-2.684-.103-.253-.446-1.271.098-2.65 0 0 .84-.269 2.75 1.025A9.56 9.56 0 0 1 12 6.8c.85.004 1.705.115 2.504.337 1.909-1.294 2.748-1.025 2.748-1.025.546 1.379.202 2.397.1 2.65.64.7 1.028 1.592 1.028 2.684 0 3.842-2.338 4.688-4.566 4.936.359.31.678.92.678 1.854 0 1.34-.012 2.419-.012 2.749 0 .268.18.58.688.481A10.002 10.002 0 0 0 22 12c0-5.523-4.477-10-10-10Z" />
+          </svg>
+          <span>IsackPerovano</span>
+        </a>
+      </footer>
     </div>
   );
 };
