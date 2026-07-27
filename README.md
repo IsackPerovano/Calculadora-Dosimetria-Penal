@@ -1,75 +1,39 @@
-# React + TypeScript + Vite
+# ⚖️ Calculadora de Dosimetria Penal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma aplicação web progressiva (PWA) e responsiva criada para auxiliar estudantes e profissionais do Direito a realizarem a aplicação da pena criminal (dosimetria da pena) de forma rápida, precisa e visual.
 
-Currently, two official plugins are available:
+🔗 **Link do Projeto:** [Calculadora de Dosimetria Penal](https://calculadoradosimetriapenal.netlify.app/)
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Tecnologias Utilizadas
 
-## React Compiler
+### **Front-end**
+* **React** com **TypeScript**
+* **Vite** 
+* **Tailwind CSS** 
+* **PWA** (Progressive Web App) — Instalável em smartphones e desktops
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### **Back-end**
+* **PHP 8.2** (Cálculos de dosimetria penal no servidor)
+* **Apache** (Servidor Web)
+* **Docker** (Containerização do serviço de Back-end)
 
-Note: This will impact Vite dev & build performances.
+### **Deploy e Infraestrutura**
+* **Netlify** — Hospedagem do Front-end React
+* **Render** — Hospedagem da API/Back-end PHP via Container Docker
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Como Executar o Projeto Localmente
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### **Pré-requisitos**
+Antes de começar, você precisará ter instalado em sua máquina:
+* [Node.js](https://nodejs.org/) (v18 ou superior)
+* [PHP 8.x](https://www.php.net/) ou [Docker Desktop](https://www.docker.com/)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 1. Clonar o Repositório
+```bash
+git clone https://github.com/IsackPerovano/Calculadora-Dosimetria-Penal.git
+cd Calculadora-Dosimetria-Penal
